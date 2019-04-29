@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
 pkgname=("${MINGW_PACKAGE_PREFIX}-libmmlib0" "${MINGW_PACKAGE_PREFIX}-mmlib-devel")
 pkgbase=mmlib
-pkgver=1.0.0
+pkgver=1.0.0+next2
 pkgrel=1
 pkgdesc="MindMaze helper library
   mmlib is the general purpose library providing helper functions to other
@@ -9,7 +9,7 @@ pkgdesc="MindMaze helper library
   geometry."
 arch=('x86_64')
 url="https://intranet.mindmaze.ch/mmlabs/gerrit/admin/projects/mmlib"
-source=(git+file://${MMSRCS:-${HOME}/sources}/mmlib#branch=master)
+source=(git+ssh://intranet.mindmaze.ch:29418/mmlib#commit=abdc4f6e9a2070f16a897465004254d014faf80b)
 sha256sums=(SKIP)
 
 build() {
