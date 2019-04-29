@@ -1,14 +1,14 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack")
 pkgbase=mmpack
-pkgver=0.0.1
+pkgver=0.0.1+next2
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
   installation and removal of mmpack software packages."
 arch=('x86_64')
 url="https://intranet.mindmaze.ch/mmlabs/gerrit/admin/projects/mmpack"
-source=(git+file://${MMSRCS:-${HOME}/sources}/mmpack#branch=master)
+source=(git+ssh://intranet.mindmaze.ch:29418/mmpack#commit=3891fc3b000b05bdf7cf02665922729e25c09a24)
 sha256sums=(SKIP)
 
 depends=(mingw-w64-x86_64-libyaml
