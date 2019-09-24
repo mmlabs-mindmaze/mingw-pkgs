@@ -2,21 +2,21 @@
 
 pkgbase=python3-pefile
 pkgname=("${MINGW_PACKAGE_PREFIX}-python3-pefile")
-pkgver=2018.8.8
+pkgver=2019.4.18+gg
 pkgrel=1
 pkgdesc="Multi-platform Python module to parse and work with Portable Executable (PE) files"
 arch=('x86_64')
 url="https://github.com/erocarrera/pefile"
 makedepends=('python3-setuptools')
 license=('MIT')
-source=("${pkgbase}-${pkgver}.tar.gz"::"https://github.com/erocarrera/pefile/releases/download/v${pkgver}/pefile-${pkgver}.tar.gz")
-sha256sums=('4c5b7e2de0c8cb6c504592167acf83115cbbde01fe4a507c16a1422850e86cd6')
+source=(git+https://github.com/GabrielGanne/pefile.git#commit=5c356d9aa9d0d828aa673968e35a679cd78588c7)
+sha256sums=('SKIP')
 
 
 package() {
 	depends=("${MINGW_PACKAGE_PREFIX}-python3")
 
-	cd ${srcdir}/pefile-${pkgver}
+	cd ${srcdir}/pefile
 	MSYS2_ARG_CONV_EXCL="--prefix=;--install-scripts=;--install-platlib=" \
 	${MINGW_PREFIX}/bin/python3 setup.py install --prefix=${MINGW_PREFIX} --root="${pkgdir}" --optimize=1
 }
