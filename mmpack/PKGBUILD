@@ -1,14 +1,14 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack")
 pkgbase=mmpack
-pkgver=0.0.1+next3
+pkgver=0.0.1+next5
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
   installation and removal of mmpack software packages."
 arch=('x86_64')
 url="https://intranet.mindmaze.ch/mmlabs/gerrit/admin/projects/mmpack"
-source=(git+ssh://intranet.mindmaze.ch:29418/mmpack#commit=d306754be3694f08d9b284c777ca69463b5b2b70)
+source=(git+ssh://intranet.mindmaze.ch:29418/mmpack#commit=b3c1d6a0b41061185e4ef561e518311eff4393fc)
 sha256sums=(SKIP)
 
 depends=(mingw-w64-x86_64-libyaml
@@ -22,9 +22,10 @@ depends=(mingw-w64-x86_64-libyaml
 )
 
 build() {
-    cd $pkgbase
-    ./autogen.sh
-    ./configure --prefix=/usr \
+    mkdir -p $pkgbase/build
+    cd $pkgbase/build
+    ../autogen.sh
+    ../configure --prefix=/usr \
         --prefix=${MINGW_PREFIX} \
         --build=${MINGW_CHOST} \
         --host=${MINGW_CHOST}
