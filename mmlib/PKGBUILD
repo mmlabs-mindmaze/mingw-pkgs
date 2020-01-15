@@ -1,19 +1,19 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
 pkgname=("${MINGW_PACKAGE_PREFIX}-libmmlib0" "${MINGW_PACKAGE_PREFIX}-mmlib-devel")
 pkgbase=mmlib
-pkgver=1.0.0+next3
+pkgver=1.1.0
 pkgrel=1
 pkgdesc="MindMaze helper library
   mmlib is the general purpose library providing helper functions to other
   module. It provides facilities for logging, error reporting and basic
   geometry."
 arch=('x86_64')
-url="https://intranet.mindmaze.ch/mmlabs/gerrit/admin/projects/mmlib"
-source=(git+ssh://intranet.mindmaze.ch:29418/mmlib#commit=3377481c0a31ca8cacb637532a80c60cf0ca9b16)
-sha256sums=(SKIP)
+url="https://github.com/mmlabs-mindmaze/mmlib"
+source=(https://github.com/mmlabs-mindmaze/mmlib/releases/download/${pkgver}/mmlib-${pkgver}.tar.xz)
+sha256sums=(49321b0fd639bc8a3be22764744bfe4460128b8869e8e814e7be0bfb5ecc1ba0)
 
 build() {
-    cd $pkgbase
+    cd $pkgbase-$pkgver
     ./autogen.sh
     ./configure --prefix=/usr --enable-sphinxdoc=no \
         --prefix=${MINGW_PREFIX} \
