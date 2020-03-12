@@ -1,33 +1,32 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack")
 pkgbase=mmpack
-pkgver=0.1.1
+pkgver=0.2.0
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
   installation and removal of mmpack software packages."
 arch=('x86_64')
-url="https://intranet.mindmaze.ch/mmlabs/gerrit/admin/projects/mmpack"
-source=(git+ssh://intranet.mindmaze.ch:29418/mmpack#tag=0.1.1)
-sha256sums=(SKIP)
+url="https://github.com/mmlabs-mindmaze/mmpack"
+source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
+sha256sums=(32891d7af3932bd457a5e15bed392c3a8cd8faecabde21b2b32b83e4bb411299)
 
 depends=(mingw-w64-x86_64-libyaml
          mingw-w64-x86_64-curl
          mingw-w64-x86_64-libarchive
-         mingw-w64-x86_64-libmmlib0
+         mingw-w64-x86_64-libmmlib1
          mingw-w64-x86_64-meson
-         mingw-w64-x86_64-python3
-         mingw-w64-x86_64-python3-yaml
-         mingw-w64-x86_64-python3-urllib3
+         mingw-w64-x86_64-python
+         mingw-w64-x86_64-python-yaml
+         mingw-w64-x86_64-python-urllib3
          mingw-w64-x86_64-python3-pefile
-         mingw-w64-x86_64-python3-astroid
+         mingw-w64-x86_64-python-astroid
 )
 
 build() {
-    mkdir -p $pkgbase/build
-    cd $pkgbase/build
-    ../autogen.sh
-    ../configure --prefix=/usr \
+    cd $pkgbase-$pkgver
+    ./autogen.sh
+    ./configure \
         --prefix=${MINGW_PREFIX} \
         --build=${MINGW_CHOST} \
         --host=${MINGW_CHOST}
