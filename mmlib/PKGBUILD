@@ -1,16 +1,16 @@
-# Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
-pkgname=("${MINGW_PACKAGE_PREFIX}-libmmlib0" "${MINGW_PACKAGE_PREFIX}-mmlib-devel")
+# Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.com>
+pkgname=("${MINGW_PACKAGE_PREFIX}-libmmlib1" "${MINGW_PACKAGE_PREFIX}-mmlib-devel" "${MINGW_PACKAGE_PREFIX}-mmlib-locales")
 pkgbase=mmlib
-pkgver=1.1.0
+pkgver=1.2.2
 pkgrel=1
 pkgdesc="MindMaze helper library
-  mmlib is the general purpose library providing helper functions to other
-  module. It provides facilities for logging, error reporting and basic
-  geometry."
+ mmlib is the general purpose library providing helper functions to other
+ module. It provides a cross-platform OS abstaction layer as well as facilities
+ like logging or error reporting."
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmlib"
 source=(https://github.com/mmlabs-mindmaze/mmlib/releases/download/${pkgver}/mmlib-${pkgver}.tar.xz)
-sha256sums=(49321b0fd639bc8a3be22764744bfe4460128b8869e8e814e7be0bfb5ecc1ba0)
+sha256sums=(7c35c6eb26cba622b7e34c38eaffe08b160236cd92ea666db31635532fb837b1)
 
 build() {
     cd $pkgbase-$pkgver
@@ -24,7 +24,7 @@ build() {
     make DESTDIR=${srcdir}/dest install
 }
 
-package_libmmlib0() {
+package_libmmlib1() {
     groups=('base')
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
 
@@ -37,8 +37,17 @@ package_mmlib-devel() {
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
 
     mkdir -p ${pkgdir}/${MINGW_PREFIX}
-    cp -rf ${instdir}/include ${instdir}/lib ${instdir}/share ${pkgdir}/${MINGW_PREFIX}
+    cp -rf ${instdir}/include ${instdir}/lib ${pkgdir}/${MINGW_PREFIX}
 }
 
-eval "package_${MINGW_PACKAGE_PREFIX}-libmmlib0() { package_libmmlib0; }"
+package_mmlib-locales() {
+    groups=('base')
+    local instdir=${srcdir}/dest/${MINGW_PREFIX}
+
+    mkdir -p ${pkgdir}/${MINGW_PREFIX}/share
+    cp -rf ${instdir}/share/locale ${pkgdir}/${MINGW_PREFIX}/share
+}
+
+eval "package_${MINGW_PACKAGE_PREFIX}-libmmlib1() { package_libmmlib1; }"
 eval "package_${MINGW_PACKAGE_PREFIX}-mmlib-devel() { package_mmlib-devel; }"
+eval "package_${MINGW_PACKAGE_PREFIX}-mmlib-locales() { package_mmlib-locales; }"
