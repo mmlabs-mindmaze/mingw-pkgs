@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack")
 pkgbase=mmpack
-pkgver=0.2.0
+pkgver=0.3.0
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
@@ -9,7 +9,7 @@ pkgdesc="MindMaze package manager
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmpack"
 source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
-sha256sums=(32891d7af3932bd457a5e15bed392c3a8cd8faecabde21b2b32b83e4bb411299)
+sha256sums=(e6d7adfdb14a2ecdc41382f834d7ecb3c54084b41371204ca33a9b4a5e2a57d8)
 
 depends=(mingw-w64-x86_64-libyaml
          mingw-w64-x86_64-curl
