@@ -1,13 +1,13 @@
 pkgbase=python3-linuxdoc
 pkgname=("${MINGW_PACKAGE_PREFIX}-python3-linuxdoc")
-pkgver=1.0.1
+pkgver=20200812+mm1
 pkgrel=1
 pkgdesc="module to parse kerneldoc syntax comment and generate doc in sphinx"
 makedepends=("${MINGW_PACKAGE_PREFIX}-python3-setuptools")
 license=('GPL2')
 arch=('x86_64')
 url="https://review.gerrithub.io/admin/repos/mmlabs-mindmaze/linuxdoc"
-source=(git+https://review.gerrithub.io/mmlabs-mindmaze/linuxdoc#commit=5e17fa35ecdd1caf361eec1c7d9d251084d5681a)
+source=(git+https://review.gerrithub.io/mmlabs-mindmaze/linuxdoc#commit=6b6380608480cd1ce43326769d363c2a71998c83)
 sha256sums=(SKIP)
 
 
