@@ -1,20 +1,23 @@
-# Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
+# Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 
-pkgbase=python3-pefile
-pkgname=("${MINGW_PACKAGE_PREFIX}-python3-pefile")
+pkgbase=python-pefile
+pkgname=("${MINGW_PACKAGE_PREFIX}-python-pefile")
 pkgver=2019.4.18+gg
 pkgrel=1
 pkgdesc="Multi-platform Python module to parse and work with Portable Executable (PE) files"
 arch=('x86_64')
 url="https://github.com/erocarrera/pefile"
-makedepends=('python3-setuptools')
+makedepends=('python-setuptools')
 license=('MIT')
 source=(git+https://github.com/GabrielGanne/pefile.git#commit=5c356d9aa9d0d828aa673968e35a679cd78588c7)
 sha256sums=('SKIP')
 
 
 package() {
-	depends=("${MINGW_PACKAGE_PREFIX}-python3")
+	depends=("${MINGW_PACKAGE_PREFIX}-python")
+	provides=("${MINGW_PACKAGE_PREFIX}-python3-pefile=${pkgver}")
+	conflicts=("${MINGW_PACKAGE_PREFIX}-python3-pefile")
+	replaces=("${MINGW_PACKAGE_PREFIX}-python3-pefile")
 
 	cd ${srcdir}/pefile
 	MSYS2_ARG_CONV_EXCL="--prefix=;--install-scripts=;--install-platlib=" \
