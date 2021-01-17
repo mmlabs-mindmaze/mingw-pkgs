@@ -1,7 +1,7 @@
-# Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.ch>
-pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack")
+# Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
+pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack" "${MINGW_PACKAGE_PREFIX}-mmpack-build" "${MINGW_PACKAGE_PREFIX}-mmpack-repo-tools")
 pkgbase=mmpack
-pkgver=0.4.1
+pkgver=0.5.1
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
@@ -9,19 +9,7 @@ pkgdesc="MindMaze package manager
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmpack"
 source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
-sha256sums=(c0cb19eaad2676be5d254d8a89088ba8119d20f44922326d2ce84719c3d973a9)
-
-depends=(mingw-w64-x86_64-libyaml
-         mingw-w64-x86_64-curl
-         mingw-w64-x86_64-libarchive
-         mingw-w64-x86_64-libmmlib1
-         mingw-w64-x86_64-meson
-         mingw-w64-x86_64-python
-         mingw-w64-x86_64-python-yaml
-         mingw-w64-x86_64-python-urllib3
-         mingw-w64-x86_64-python3-pefile
-         mingw-w64-x86_64-python-astroid
-)
+sha256sums=(9ebea9f1566f7167f7250fb311b56a929919b2408d13a0b41fb786c8a35c9991)
 
 build() {
     cd $pkgbase-$pkgver
@@ -37,12 +25,71 @@ build() {
 
 package_mmpack() {
     groups=('base')
+    depends=(${MINGW_PACKAGE_PREFIX}-libyaml
+             ${MINGW_PACKAGE_PREFIX}-curl
+             ${MINGW_PACKAGE_PREFIX}-libarchive
+             ${MINGW_PACKAGE_PREFIX}-libmmlib1
+    )
+
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
 
-    mkdir -p ${pkgdir}/${MINGW_PREFIX}
-    cp -rvf ${instdir}/* ${pkgdir}/${MINGW_PREFIX}
-
-
+    mkdir -p ${pkgdir}/${MINGW_PREFIX}/bin \
+	     ${pkgdir}/${MINGW_PREFIX}/libexec/mmpack \
+	     ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions \
+	     ${pkgdir}/${MINGW_PREFIX}/share/man/man1 \
+	     ${pkgdir}/${MINGW_PREFIX}/share/mmpack
+    cp -rvf ${instdir}/bin/mmpack.exe ${pkgdir}/${MINGW_PREFIX}/bin
+    cp -rvf ${instdir}/libexec/mmpack/mount-mmpack-prefix.exe ${pkgdir}/${MINGW_PREFIX}/libexec/mmpack
+    cp -rvf ${instdir}/share/bash-completion/completions/mmpack ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions
+    cp -rvf ${instdir}/share/man/man5 ${pkgdir}/${MINGW_PREFIX}/share/man
+    cp -rvf ${instdir}/share/man/man1/mmpack{,-autoremove,-check-integrity,-download,-fix-broken,-install,-list,-mkprefix,-provides,-rdepends,-remove,-repo,-run,-search,-show,-source,-update,-upgrade}.1 ${pkgdir}/${MINGW_PREFIX}/share/man/man1
+    cp -rvf ${instdir}/share/mmpack/prompt.bash ${pkgdir}/${MINGW_PREFIX}/share/mmpack
 }
 
-eval "package_${MINGW_PACKAGE_PREFIX}-mmpack() { package_mmpack; }"
+package_mmpack-build() {
+    groups=('base-devel')
+    depends=(${MINGW_PACKAGE_PREFIX}-mmpack
+             ${MINGW_PACKAGE_PREFIX}-meson
+             ${MINGW_PACKAGE_PREFIX}-python
+             ${MINGW_PACKAGE_PREFIX}-python-yaml
+             ${MINGW_PACKAGE_PREFIX}-python-urllib3
+             ${MINGW_PACKAGE_PREFIX}-python-pefile
+             ${MINGW_PACKAGE_PREFIX}-python-astroid
+    )
+
+    local instdir=${srcdir}/dest/${MINGW_PREFIX}
+
+    mkdir -p ${pkgdir}/${MINGW_PREFIX}/bin \
+	     ${pkgdir}/${MINGW_PREFIX}/libexec/mmpack \
+	     ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions \
+	     ${pkgdir}/${MINGW_PREFIX}/share/man/man1 \
+	     ${pkgdir}/${MINGW_PREFIX}/share/mmpack
+    cp -rvf ${instdir}/bin/mmpack-build ${pkgdir}/${MINGW_PREFIX}/bin
+    cp -rvf ${instdir}/libexec/mmpack/mmpack-check-sysdep.exe ${pkgdir}/${MINGW_PREFIX}/libexec/mmpack
+    cp -rvf ${instdir}/share/mmpack/mmpack_build ${pkgdir}/${MINGW_PREFIX}/share/mmpack
+    cp -rvf ${instdir}/share/bash-completion/completions/mmpack-build ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions
+    cp -rvf ${instdir}/share/man/man1/mmpack-build*.1 ${pkgdir}/${MINGW_PREFIX}/share/man/man1
+    cp -rvf ${instdir}/share/mmpack/common-licenses ${pkgdir}/${MINGW_PREFIX}/share/mmpack
+}
+
+package_mmpack-repo-tools() {
+    groups=('base')
+    depends=(${MINGW_PACKAGE_PREFIX}-python
+             ${MINGW_PACKAGE_PREFIX}-python-yaml
+             ${MINGW_PACKAGE_PREFIX}-python-watchdog
+    )
+
+    local instdir=${srcdir}/dest/${MINGW_PREFIX}
+
+    mkdir -p ${pkgdir}/${MINGW_PREFIX}/bin \
+	     ${pkgdir}/${MINGW_PREFIX}/share/man/man1 \
+	     ${pkgdir}/${MINGW_PREFIX}/share/mmpack
+    cp -rvf ${instdir}/bin/mmpack-modifyrepo ${pkgdir}/${MINGW_PREFIX}/bin
+    cp -rvf ${instdir}/share/man/man1/mmpack-modifyrepo.1 ${pkgdir}/${MINGW_PREFIX}/share/man/man1
+    cp -rvf ${instdir}/share/mmpack/repo.py ${pkgdir}/${MINGW_PREFIX}/share/mmpack
+}
+
+
+for _name in "${pkgname[@]}"; do
+	eval "package_${_name}() { package_${_name#${MINGW_PACKAGE_PREFIX}-}; }";
+done
