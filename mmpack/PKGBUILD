@@ -53,6 +53,7 @@ package_mmpack-build() {
              ${MINGW_PACKAGE_PREFIX}-python-urllib3
              ${MINGW_PACKAGE_PREFIX}-python-pefile
              ${MINGW_PACKAGE_PREFIX}-python-astroid
+             git
     )
 
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
