@@ -25,7 +25,6 @@ build() {
 }
 
 package_libmmlib1() {
-    groups=('base')
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
 
     mkdir -p ${pkgdir}/${MINGW_PREFIX}
@@ -33,7 +32,6 @@ package_libmmlib1() {
 }
 
 package_mmlib-devel() {
-    groups=('base-devel')
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
 
     mkdir -p ${pkgdir}/${MINGW_PREFIX}
@@ -41,7 +39,6 @@ package_mmlib-devel() {
 }
 
 package_mmlib-locales() {
-    groups=('base')
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
 
     mkdir -p ${pkgdir}/${MINGW_PREFIX}/share
