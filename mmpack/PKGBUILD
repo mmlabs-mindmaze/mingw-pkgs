@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack" "${MINGW_PACKAGE_PREFIX}-mmpack-build" "${MINGW_PACKAGE_PREFIX}-mmpack-repo-tools")
 pkgbase=mmpack
-pkgver=0.5.1
+pkgver=0.6.0
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
@@ -9,7 +9,7 @@ pkgdesc="MindMaze package manager
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmpack"
 source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
-sha256sums=(9ebea9f1566f7167f7250fb311b56a929919b2408d13a0b41fb786c8a35c9991)
+sha256sums=(480ced3e910b025dfe5d76513ded9c920c22585c91820ea921023e99271304a4)
 
 build() {
     cd $pkgbase-$pkgver
@@ -28,6 +28,7 @@ package_mmpack() {
              ${MINGW_PACKAGE_PREFIX}-curl
              ${MINGW_PACKAGE_PREFIX}-libarchive
              ${MINGW_PACKAGE_PREFIX}-libmmlib1
+             ${MINGW_PACKAGE_PREFIX}-zlib
     )
 
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
@@ -41,7 +42,7 @@ package_mmpack() {
     cp -rvf ${instdir}/libexec/mmpack/mount-mmpack-prefix.exe ${pkgdir}/${MINGW_PREFIX}/libexec/mmpack
     cp -rvf ${instdir}/share/bash-completion/completions/mmpack ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions
     cp -rvf ${instdir}/share/man/man5 ${pkgdir}/${MINGW_PREFIX}/share/man
-    cp -rvf ${instdir}/share/man/man1/mmpack{,-autoremove,-check-integrity,-download,-fix-broken,-install,-list,-mkprefix,-provides,-rdepends,-remove,-repo,-run,-search,-show,-source,-update,-upgrade}.1 ${pkgdir}/${MINGW_PREFIX}/share/man/man1
+    cp -rvf ${instdir}/share/man/man1/mmpack{,_*}.1 ${pkgdir}/${MINGW_PREFIX}/share/man/man1
     cp -rvf ${instdir}/share/mmpack/prompt.bash ${pkgdir}/${MINGW_PREFIX}/share/mmpack
 }
 
@@ -53,6 +54,7 @@ package_mmpack-build() {
              ${MINGW_PACKAGE_PREFIX}-python-urllib3
              ${MINGW_PACKAGE_PREFIX}-python-pefile
              ${MINGW_PACKAGE_PREFIX}-python-astroid
+             ${MINGW_PACKAGE_PREFIX}-zstd
              git
     )
 
@@ -75,6 +77,8 @@ package_mmpack-repo-tools() {
     depends=(${MINGW_PACKAGE_PREFIX}-python
              ${MINGW_PACKAGE_PREFIX}-python-yaml
              ${MINGW_PACKAGE_PREFIX}-python-watchdog
+             ${MINGW_PACKAGE_PREFIX}-libarchive
+             ${MINGW_PACKAGE_PREFIX}-zstd
     )
 
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
