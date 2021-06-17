@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack" "${MINGW_PACKAGE_PREFIX}-mmpack-build" "${MINGW_PACKAGE_PREFIX}-mmpack-repo-tools")
 pkgbase=mmpack
-pkgver=0.6.6
+pkgver=0.6.7
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
@@ -9,7 +9,7 @@ pkgdesc="MindMaze package manager
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmpack"
 source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
-sha256sums=(ef55fda9cffe2ede38f3dc08339355d96491947a3221a9d003acd752c2bf0aeb)
+sha256sums=(b5a21ba1b716f9fdaf8e2b23b70455c167b48b238e949dc585562527458e8f47)
 
 build() {
     cd $pkgbase-$pkgver
@@ -56,6 +56,7 @@ package_mmpack-build() {
              ${MINGW_PACKAGE_PREFIX}-python-astroid
              ${MINGW_PACKAGE_PREFIX}-zstd
              git
+             patch
     )
 
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
