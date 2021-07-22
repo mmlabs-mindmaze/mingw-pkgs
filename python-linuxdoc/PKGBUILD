@@ -1,5 +1,5 @@
-pkgbase=python3-linuxdoc
-pkgname=("${MINGW_PACKAGE_PREFIX}-python3-linuxdoc")
+pkgbase=python-linuxdoc
+pkgname=("${MINGW_PACKAGE_PREFIX}-python-linuxdoc")
 pkgver=20200812+mm1
 pkgrel=2
 pkgdesc="module to parse kerneldoc syntax comment and generate doc in sphinx"
@@ -13,6 +13,9 @@ sha256sums=(SKIP)
 
 package() {
 	depends=("${MINGW_PACKAGE_PREFIX}-python-sphinx")
+	provides=("${MINGW_PACKAGE_PREFIX}-python3-linuxdoc=${pkgver}")
+	conflicts=("${MINGW_PACKAGE_PREFIX}-python3-linuxdoc")
+	replaces=("${MINGW_PACKAGE_PREFIX}-python3-linuxdoc")
 
 	cd linuxdoc
 	MSYS2_ARG_CONV_EXCL="--prefix=;--install-scripts=;--install-platlib=" \
