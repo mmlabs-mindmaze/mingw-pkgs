@@ -1,9 +1,9 @@
 pkgbase=python3-linuxdoc
 pkgname=("${MINGW_PACKAGE_PREFIX}-python3-linuxdoc")
 pkgver=20200812+mm1
-pkgrel=1
+pkgrel=2
 pkgdesc="module to parse kerneldoc syntax comment and generate doc in sphinx"
-makedepends=("${MINGW_PACKAGE_PREFIX}-python3-setuptools")
+makedepends=("${MINGW_PACKAGE_PREFIX}-python-setuptools")
 license=('GPL2')
 arch=('x86_64')
 url="https://review.gerrithub.io/admin/repos/mmlabs-mindmaze/linuxdoc"
@@ -12,7 +12,7 @@ sha256sums=(SKIP)
 
 
 package() {
-	depends=("${MINGW_PACKAGE_PREFIX}-python3-sphinx")
+	depends=("${MINGW_PACKAGE_PREFIX}-python-sphinx")
 
 	cd linuxdoc
 	MSYS2_ARG_CONV_EXCL="--prefix=;--install-scripts=;--install-platlib=" \
