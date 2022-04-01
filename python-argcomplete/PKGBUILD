@@ -1,0 +1,22 @@
+# Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
+
+pkgbase=python-argcomplete
+pkgname=("${MINGW_PACKAGE_PREFIX}-python-argcomplete")
+pkgver=1.8.1
+pkgrel=1
+pkgdesc="Bash tab completion for argparse"
+arch=('x86_64')
+url="https://github.com/kislyuk/argcomplete"
+makedepends=('python-setuptools')
+license=('MIT')
+source=(https://github.com/kislyuk/argcomplete/archive/tags/v${pkgver}.tar.gz)
+sha256sums=('669819d67f4be2e2a1a2f625cad74dd7d31c23958aa2fe95131da07a1eb64869')
+
+
+package() {
+	depends=("${MINGW_PACKAGE_PREFIX}-python")
+
+	cd ${srcdir}/argcomplete-tags-v${pkgver}
+	MSYS2_ARG_CONV_EXCL="--prefix=;--install-scripts=;--install-platlib=" \
+	${MINGW_PREFIX}/bin/python3 setup.py install --prefix=${MINGW_PREFIX} --root="${pkgdir}" --optimize=1
+}
