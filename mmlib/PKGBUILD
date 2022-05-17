@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.com>
 pkgname=("${MINGW_PACKAGE_PREFIX}-libmmlib1" "${MINGW_PACKAGE_PREFIX}-mmlib-devel" "${MINGW_PACKAGE_PREFIX}-mmlib-locales")
 pkgbase=mmlib
-pkgver=1.3.0
+pkgver=1.4.0
 pkgrel=1
 pkgdesc="MindMaze helper library
  mmlib is the general purpose library providing helper functions to other
@@ -9,8 +9,8 @@ pkgdesc="MindMaze helper library
  like logging or error reporting."
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmlib"
-source=(https://github.com/mmlabs-mindmaze/mmlib/releases/download/${pkgver}/mmlib_${pkgver}.tar.xz)
-sha256sums=(faea2a5e1bd154e6c5b77a19b4f340baec9160bef05c098b5d86e459616d7296)
+source=(https://github.com/mmlabs-mindmaze/mmlib/releases/download/${pkgver}/mmlib-${pkgver}.tar.xz)
+sha256sums=(eba49e0e272169ef502b2ee7cb263d36fff140603c43fecd95cabed645735dcb)
 
 build() {
     local builddir=$pkgbase/build
