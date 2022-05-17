@@ -19,7 +19,7 @@ an archive.
 cd mmlib
 
 # create mingw64 pacman's mmlib package
-MINGW_INSTALLS=mingw64 makepkg-mingw --syncdeps --log  --force
+MINGW_ARCH=mingw64 makepkg-mingw --syncdeps --log  --force
 
 # peek into the generated package
 tar tvf mingw-w64-x86_64-libmmlib0-0.3.4-1-x86_64.pkg.tar.xz
