@@ -12,15 +12,13 @@ source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mm
 sha256sums=(d4cc29780cd5510f6c05dc3c1592e00df6bf548de976f5f7d48201bd8cdc2663)
 
 build() {
-    cd $pkgbase-$pkgver
-    ./autogen.sh
-    ./configure \
-        --prefix=${MINGW_PREFIX} \
-        --build=${MINGW_CHOST} \
-        --host=${MINGW_CHOST}
+    local builddir=$pkgbase-$pkgver/build
+    mkdir -p ${builddir}
+    cd ${builddir}
 
-    make
-    make DESTDIR=${srcdir}/dest install
+    MSYS2_ARG_CONV_EXCL="--prefix=" \
+    meson --prefix="${MINGW_PREFIX}" ..
+    DESTDIR=${srcdir}/dest ninja install
 }
 
 package_mmpack() {
