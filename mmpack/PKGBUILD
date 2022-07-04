@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack" "${MINGW_PACKAGE_PREFIX}-mmpack-build" "${MINGW_PACKAGE_PREFIX}-mmpack-repo-tools")
 pkgbase=mmpack
-pkgver=0.6.10
+pkgver=0.7.0
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
@@ -9,7 +9,7 @@ pkgdesc="MindMaze package manager
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmpack"
 source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
-sha256sums=(73b67802dbcc8f31c0a84c9d101f4e28384c7a40150bfb50e06baffd12794c1d)
+sha256sums=(d4cc29780cd5510f6c05dc3c1592e00df6bf548de976f5f7d48201bd8cdc2663)
 
 build() {
     cd $pkgbase-$pkgver
@@ -49,11 +49,15 @@ package_mmpack() {
 package_mmpack-build() {
     depends=(${MINGW_PACKAGE_PREFIX}-mmpack
              ${MINGW_PACKAGE_PREFIX}-meson
+             ${MINGW_PACKAGE_PREFIX}-cmake
              ${MINGW_PACKAGE_PREFIX}-python
              ${MINGW_PACKAGE_PREFIX}-python-yaml
              ${MINGW_PACKAGE_PREFIX}-python-urllib3
              ${MINGW_PACKAGE_PREFIX}-python-pefile
              ${MINGW_PACKAGE_PREFIX}-python-astroid
+             ${MINGW_PACKAGE_PREFIX}-python-pip
+             ${MINGW_PACKAGE_PREFIX}-python-setuptools
+             ${MINGW_PACKAGE_PREFIX}-python-argcomplete
              ${MINGW_PACKAGE_PREFIX}-zstd
              git
              patch
@@ -77,6 +81,7 @@ package_mmpack-repo-tools() {
     depends=(${MINGW_PACKAGE_PREFIX}-python
              ${MINGW_PACKAGE_PREFIX}-python-yaml
              ${MINGW_PACKAGE_PREFIX}-python-watchdog
+             ${MINGW_PACKAGE_PREFIX}-python-argcomplete
              ${MINGW_PACKAGE_PREFIX}-libarchive
              ${MINGW_PACKAGE_PREFIX}-zstd
     )
