@@ -17,7 +17,7 @@ build() {
     cd ${builddir}
 
     MSYS2_ARG_CONV_EXCL="--prefix=" \
-    meson --prefix="${MINGW_PREFIX}" ..
+    meson --prefix="${MINGW_PREFIX}" --buildtype=release ..
     DESTDIR=${srcdir}/dest ninja install
 }
 
