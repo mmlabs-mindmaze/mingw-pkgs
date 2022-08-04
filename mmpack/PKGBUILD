@@ -2,7 +2,7 @@
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack" "${MINGW_PACKAGE_PREFIX}-mmpack-build" "${MINGW_PACKAGE_PREFIX}-mmpack-repo-tools")
 pkgbase=mmpack
 pkgver=0.7.3
-pkgrel=1
+pkgrel=2
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
   installation and removal of mmpack software packages."
@@ -37,7 +37,7 @@ package_mmpack() {
 	     ${pkgdir}/${MINGW_PREFIX}/share/man/man1 \
 	     ${pkgdir}/${MINGW_PREFIX}/share/mmpack
     cp -rvf ${instdir}/bin/mmpack.exe ${pkgdir}/${MINGW_PREFIX}/bin
-    cp -rvf ${instdir}/libexec/mmpack/mount-mmpack-prefix.exe ${pkgdir}/${MINGW_PREFIX}/libexec/mmpack
+    cp -rvf ${instdir}/libexec/mmpack ${pkgdir}/${MINGW_PREFIX}/libexec
     cp -rvf ${instdir}/share/bash-completion/completions/mmpack ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions
     cp -rvf ${instdir}/share/man/man5 ${pkgdir}/${MINGW_PREFIX}/share/man
     cp -rvf ${instdir}/share/man/man1/mmpack{,_*}.1 ${pkgdir}/${MINGW_PREFIX}/share/man/man1
