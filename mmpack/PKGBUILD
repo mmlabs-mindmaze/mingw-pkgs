@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack" "${MINGW_PACKAGE_PREFIX}-mmpack-build" "${MINGW_PACKAGE_PREFIX}-mmpack-repo-tools")
 pkgbase=mmpack
-pkgver=0.7.5
+pkgver=0.7.6
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
@@ -9,7 +9,7 @@ pkgdesc="MindMaze package manager
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmpack"
 source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
-sha256sums=(de59bfc685a99d21bc666bbbccc4a24c789d84040d5baffcd4d74fb0e4e66be8)
+sha256sums=(33ffebb5d216739f0db8599ca443a33e854185e3c444dcaaf4b6c4a02ab04eff)
 
 build() {
     local builddir=$pkgbase-$pkgver/build
@@ -70,6 +70,7 @@ package_mmpack-build() {
 	     ${pkgdir}/${MINGW_PREFIX}/share/mmpack
     cp -rvf ${instdir}/bin/mmpack-build ${pkgdir}/${MINGW_PREFIX}/bin
     cp -rvf ${instdir}/share/mmpack/mmpack_build ${pkgdir}/${MINGW_PREFIX}/share/mmpack
+    cp -rvf ${instdir}/share/mmpack/pyscripts ${pkgdir}/${MINGW_PREFIX}/share/mmpack
     cp -rvf ${instdir}/share/bash-completion/completions/mmpack-build ${pkgdir}/${MINGW_PREFIX}/share/bash-completion/completions
     cp -rvf ${instdir}/share/man/man1/mmpack-build*.1 ${pkgdir}/${MINGW_PREFIX}/share/man/man1
     cp -rvf ${instdir}/share/mmpack/common-licenses ${pkgdir}/${MINGW_PREFIX}/share/mmpack
