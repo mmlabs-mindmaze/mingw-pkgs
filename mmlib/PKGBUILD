@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@mindmaze.com>
 pkgname=("${MINGW_PACKAGE_PREFIX}-libmmlib1" "${MINGW_PACKAGE_PREFIX}-mmlib-devel" "${MINGW_PACKAGE_PREFIX}-mmlib-locales")
 pkgbase=mmlib
-pkgver=1.4.1
+pkgver=1.4.2
 pkgrel=1
 pkgdesc="MindMaze helper library
  mmlib is the general purpose library providing helper functions to other
@@ -10,7 +10,7 @@ pkgdesc="MindMaze helper library
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmlib"
 source=(https://github.com/mmlabs-mindmaze/mmlib/releases/download/${pkgver}/mmlib-${pkgver}.tar.xz)
-sha256sums=(f8b16b63524e1cc4e4302bd497dfcac307daa9de4288b5cd2533aaa444e59f4b)
+sha256sums=(a751ea138d29440b71609a7e7b616582f9756d200ea9efef277d66c8049b0ca5)
 
 build() {
     local builddir=$pkgbase-$pkgver/build
@@ -18,7 +18,7 @@ build() {
     cd ${builddir}
 
     MSYS2_ARG_CONV_EXCL="--prefix=" \
-    meson --prefix="${MINGW_PREFIX}" ..
+    meson --prefix="${MINGW_PREFIX}" -Ddocs=disabled ..
     DESTDIR=${srcdir}/dest ninja install
 }
 
