@@ -9,7 +9,7 @@ pkgdesc="MindMaze package manager
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmpack"
 source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
-sha256sums=(519e876c18fcdd3e2cea75b76dcac102ae8a0cfb293f8140f83abda546b7b770)
+sha256sums=(f6bf21c02db3fcdd0fc5e7897a98d00ad9869f4017a0489c68e7c4f8e44a428e)
 
 build() {
     local builddir=$pkgbase-$pkgver/build
