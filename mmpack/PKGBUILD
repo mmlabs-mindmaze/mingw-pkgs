@@ -1,7 +1,7 @@
 # Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 pkgname=("${MINGW_PACKAGE_PREFIX}-mmpack" "${MINGW_PACKAGE_PREFIX}-mmpack-build" "${MINGW_PACKAGE_PREFIX}-mmpack-repo-tools")
 pkgbase=mmpack
-pkgver=0.7.7
+pkgver=0.7.8
 pkgrel=1
 pkgdesc="MindMaze package manager
   This package provides the infrastructure for handling the build,
@@ -9,7 +9,7 @@ pkgdesc="MindMaze package manager
 arch=('x86_64')
 url="https://github.com/mmlabs-mindmaze/mmpack"
 source=(https://github.com/mmlabs-mindmaze/mmpack/releases/download/${pkgver}/mmpack-${pkgver}.tar.xz)
-sha256sums=(f6bf21c02db3fcdd0fc5e7897a98d00ad9869f4017a0489c68e7c4f8e44a428e)
+sha256sums=(b6c71451ad8199fc54ce46b9d763e2467e2fca74336ae52f7566de68eba3f923)
 
 build() {
     local builddir=$pkgbase-$pkgver/build
@@ -27,6 +27,7 @@ package_mmpack() {
              ${MINGW_PACKAGE_PREFIX}-libarchive
              ${MINGW_PACKAGE_PREFIX}-libmmlib1
              ${MINGW_PACKAGE_PREFIX}-zlib
+             ${MINGW_PACKAGE_PREFIX}-nettle
     )
 
     local instdir=${srcdir}/dest/${MINGW_PREFIX}
