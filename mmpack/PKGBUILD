@@ -94,7 +94,7 @@ package_mmpack-repo-tools() {
 	     ${pkgdir}/${MINGW_PREFIX}/share/mmpack
     cp -rvf ${instdir}/bin/mmpack-modifyrepo ${pkgdir}/${MINGW_PREFIX}/bin
     cp -rvf ${instdir}/share/man/man1/mmpack-modifyrepo.1 ${pkgdir}/${MINGW_PREFIX}/share/man/man1
-    cp -rvf ${instdir}/share/mmpack/repo.py ${pkgdir}/${MINGW_PREFIX}/share/mmpack
+    cp -rvf ${instdir}/share/mmpack/repository ${pkgdir}/${MINGW_PREFIX}/share/mmpack
 }
 
 
